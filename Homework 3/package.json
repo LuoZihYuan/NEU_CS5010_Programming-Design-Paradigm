@@ -4,7 +4,12 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "docs": "typedoc"
   },
   "keywords": [],
   "author": "Zih-Yuan Luo",
