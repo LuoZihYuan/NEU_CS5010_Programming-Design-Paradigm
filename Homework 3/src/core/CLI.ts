@@ -12,7 +12,7 @@ import { AirBnBDataHandler, Listing } from "./AirBnBDataHandler.js";
  * @returns {Promise<void>}
  */
 export const startCLI = async (data: Listing[]): Promise<void> => {
-  const handler = AirBnBDataHandler.init(data);
+  let handler = AirBnBDataHandler.init(data);
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -62,7 +62,7 @@ export const startCLI = async (data: Listing[]): Promise<void> => {
           const [min, max] = priceInput.split(",").map(Number);
           criteria.review_score = [min, max];
         }
-        handler.filter(criteria);
+        handler = handler.filter(criteria);
         console.log("Filter applied.");
         break;
       }

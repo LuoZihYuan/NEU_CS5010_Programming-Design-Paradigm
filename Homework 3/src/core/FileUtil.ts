@@ -49,6 +49,7 @@ export const FileUtil = {
             listing.host_total_listings_count
           ),
           host_verifications: JSON.parse(
+            // eslint-disable-next-line @stylistic/quotes
             listing.host_verifications.replaceAll("'", '"')
           ) as string[],
           host_has_profile_pic: listing.host_has_profile_pic === "t",
