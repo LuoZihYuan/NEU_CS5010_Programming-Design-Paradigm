@@ -194,7 +194,7 @@ export type ColumnInfo = {
  *
  * @property {Listing[] | undefined} _listings - Array of listings, or undefined if not initialized.
  */
-interface AirBnBDataHandler {
+export type AirBnBDataHandler = {
   _listings: Listing[] | undefined;
 
   /**
@@ -236,7 +236,7 @@ interface AirBnBDataHandler {
    * @returns {{ [key: string]: ColumnInfo }} An object mapping each column name to its statistical information.
    */
   describe(): { [key: string]: ColumnInfo };
-}
+};
 
 /**
  * Initializes an instance of AirBnBDataHandler.

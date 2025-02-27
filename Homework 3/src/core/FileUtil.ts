@@ -1,6 +1,6 @@
-import { csvParse, DSVRowString } from "d3";
+import { csvParse, csvFormat, DSVRowString } from "d3";
 import { readFile, writeFile } from "node:fs/promises";
-import { Listing, ColumnInfo } from "./AirBnBDataHandler.js";
+import { Listing, AirBnBDataHandler } from "./AirBnBDataHandler.js";
 
 /**
  * Utility functions for file operations.
@@ -13,7 +13,8 @@ export const FileUtil = {
    * @returns {Promise<Listing[]>} A promise that resolves to an array of Listing objects.
    */
   async load(path: string): Promise<Listing[]> {
-    const raw_data = await readFile(path, "utf-8");
+    let raw_data = await readFile(path, "utf-8");
+    raw_data = raw_data.replaceAll("N/A", "");
     const data = csvParse(raw_data);
     return data.map(
       (listing: DSVRowString<string>): Listing =>
@@ -33,10 +34,10 @@ export const FileUtil = {
             ? listing.host_response_time
             : undefined,
           host_response_rate: listing.host_response_rate
-            ? parseFloat(listing.host_response_rate.replace("%", ""))
+            ? parseInt(listing.host_response_rate) / 100
             : undefined,
           host_acceptance_rate: listing.host_acceptance_rate
-            ? parseFloat(listing.host_acceptance_rate.replace("%", ""))
+            ? parseInt(listing.host_acceptance_rate) / 100
             : undefined,
           host_is_superhost: listing.host_is_superhost
             ? listing.host_is_superhost === "t"
@@ -164,16 +165,41 @@ export const FileUtil = {
    * @param {string} data - The string data to write to the file.
    * @returns {Promise<void>} A promise that resolves when the file is written.
    */
-  async save(
-    path: string,
-    first?: { [key: string]: number },
-    second?: [string, number][],
-    describe?: { [key: string]: ColumnInfo }
-  ): Promise<void> {
-    const content: { [key: string]: unknown } = {};
-    content["describe"] = describe;
-    content["stats"] = first;
-    content["listings"] = second;
-    return writeFile(path, JSON.stringify(content, null, 2));
+  async save(path: string, handler: AirBnBDataHandler): Promise<void> {
+    await writeFile(
+      `${path}/listings(filtered).csv`,
+      csvFormat(handler._listings!)
+    );
+    const description = Object.entries(handler.describe()).reduce(
+      (
+        desc: { [key: string]: number | string }[],
+        [key, info]: [string, { [key: string]: number | string }]
+      ): { [key: string]: number | string }[] => {
+        info["feature"] = key;
+        desc.push(info);
+        return desc;
+      },
+      []
+    );
+    await writeFile(
+      `${path}/description.csv`,
+      csvFormat(description, [
+        "feature",
+        "count",
+        "missing",
+        "distinct",
+        "mean",
+        "std",
+        "min",
+        "25%",
+        "50%",
+        "75%",
+        "max",
+      ])
+    );
+    const hostrank = handler
+      .computeSecond()
+      .map(([id, count]) => ({ host_id: id, host_listings_count: count }));
+    await writeFile(`${path}/host_rank.csv`, csvFormat(hostrank));
   },
 };
