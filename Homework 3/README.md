@@ -22,7 +22,7 @@ You have two ways:
 
 ## Video Demonstration
 
-Watch on [YouTube]()
+Watch on [YouTube](https://youtu.be/9jAyiZalTvY)
 
 ## Counter Examples
 
@@ -31,7 +31,7 @@ Watch on [YouTube]()
 | ChatGPT |   4o    | Now I will provide the code I write. Do not say anything until I give further commands.                                                              | All the codes that I've written |
 | ChatGPT |   4o    | In my code, I demonstrated the use of pure functions and higher order functions. Now give me a similar code as counter examples of the two concepts. | -                               |
 
-### Pure Functios
+### Pure Functions
 
 The following example mutates the \_listings property, making the function impure.
 
@@ -72,7 +72,7 @@ filter({
 
 ### Higher-Order Functions
 
-The following example uses for loops instead of higher-order functions, such as `map()`, `reduce()`, and `filter()`
+The following example uses for loops instead of higher-order functions, such as `map()`, `reduce()`, and `filter()`.
 
 ```typescript
 describe() {
