@@ -1,17 +1,66 @@
 /**
- * @module CLI
+ * Module for command line interface.
+ * @module Cli
  */
 
 import readline from "node:readline/promises";
 import { FileUtil } from "./FileUtil.js";
 import { AirBnBDataHandler } from "./AirBnBDataHandler.js";
 
+/**
+ * CLI commands for interacting with Airbnb data.
+ */
+export type Cli = {
+  /**
+   * Starts the interactive CLI.
+   * @returns {Promise<void>} A promise that resolves when the CLI session ends.
+   */
+  start(): Promise<void>;
+
+  /**
+   * Applies filters to the listings based on user input.
+   * @returns {Promise<void>} A promise that resolves once the filters are applied.
+   */
+  filter(): Promise<void>;
+
+  /**
+   * Displays basic statistics of the listings.
+   * @returns {void}
+   */
+  stats(): void;
+
+  /**
+   * Displays the ranking of hosts based on the number of listings.
+   * @returns {void}
+   */
+  hostRank(): void;
+
+  /**
+   * Describes the listings by computing column statistics.
+   * @returns {void}
+   */
+  describe(): void;
+
+  /**
+   * Exports the current listings data to files.
+   * @returns {Promise<void>} A promise that resolves when the export is complete.
+   */
+  export(): Promise<void>;
+
+  /**
+   * Exits the CLI application.
+   * @returns {void}
+   */
+  exit(): void;
+};
+
 const indent = "";
+
 /**
  * Starts the command line interface (CLI) for interacting with the AirBnB data.
  * @param {Listing[]} data - The listing data.
  */
-const init = async (datapath?: string) => {
+const init = async (datapath?: string): Promise<Cli> => {
   console.log("\n[Load]");
 
   const rl = readline.createInterface({
@@ -47,7 +96,11 @@ const init = async (datapath?: string) => {
   }
 
   return {
-    async start() {
+    /**
+     * Starts the interactive CLI.
+     * @returns {Promise<void>} A promise that resolves when the CLI session ends.
+     */
+    async start(): Promise<void> {
       let exit = false;
 
       while (!exit) {
@@ -79,7 +132,11 @@ const init = async (datapath?: string) => {
       }
     },
 
-    async filter() {
+    /**
+     * Applies filters to the listings based on user input.
+     * @returns {Promise<void>} A promise that resolves once the filters are applied.
+     */
+    async filter(): Promise<void> {
       console.log("\n[Filter]");
 
       const filter_prompts = {
@@ -107,7 +164,11 @@ const init = async (datapath?: string) => {
       console.log(`${indent}> Filter applied`);
     },
 
-    stats() {
+    /**
+     * Displays basic statistics of the listings.
+     * @returns {void}
+     */
+    stats(): void {
       console.log("\n[Stats]");
       const stats = handler!.computeFirst();
       console.log(`${indent}> Count: ${stats.count}`);
@@ -116,7 +177,11 @@ const init = async (datapath?: string) => {
       );
     },
 
-    hostRank() {
+    /**
+     * Displays the ranking of hosts based on the number of listings.
+     * @returns {void}
+     */
+    hostRank(): void {
       console.log("\n[HostRank]");
       const ranking = handler!.computeSecond();
       console.log(`${indent}> host_id, host_listings_count`);
@@ -130,7 +195,11 @@ const init = async (datapath?: string) => {
       console.log(`${indent}>\n${indent}> (export to see all)`);
     },
 
-    describe() {
+    /**
+     * Describes the listings by computing column statistics.
+     * @returns {void}
+     */
+    describe(): void {
       console.log("\n[Describe]");
       const statistics = handler!.describe();
       Object.entries(statistics).forEach(([col, info]) => {
@@ -143,7 +212,11 @@ const init = async (datapath?: string) => {
       });
     },
 
-    async export() {
+    /**
+     * Exports the current listings data to files.
+     * @returns {Promise<void>} A promise that resolves when the export is complete.
+     */
+    async export(): Promise<void> {
       console.log("\n[Export]");
       const export_prompt = `${indent}< Enter folder path for export or leave blank to use default path (./data/): `;
       const filePath = (await _question(export_prompt)) || "./data/";
@@ -159,12 +232,16 @@ const init = async (datapath?: string) => {
       );
     },
 
-    exit() {
+    /**
+     * Exits the CLI application.
+     * @returns {void}
+     */
+    exit(): void {
       rl.close();
     },
-  };
+  } as Cli;
 };
 
-export const CLI = {
+export const Cli = {
   init,
 };

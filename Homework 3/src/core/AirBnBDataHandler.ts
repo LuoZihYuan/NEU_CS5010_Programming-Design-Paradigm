@@ -7,7 +7,6 @@
 
 /**
  * Represents an Airbnb listing.
- *
  * @property {string} id - Unique identifier for the listing.
  * @property {string} listing_url - URL of the listing page.
  * @property {string} scrape_id - Identifier for the scraping process.
@@ -164,7 +163,6 @@ export type Listing = {
 
 /**
  * Represents statistical information for a column.
- *
  * @property {number} count - The number of entries in the column.
  * @property {number} distinct - The number of distinct values in the column.
  * @property {number} missing - The number of missing entries in the column.
@@ -191,7 +189,6 @@ export type ColumnInfo = {
 
 /**
  * Interface for handling Airbnb data operations.
- *
  * @property {Listing[] | undefined} _listings - Array of listings, or undefined if not initialized.
  */
 export type AirBnBDataHandler = {
@@ -199,7 +196,6 @@ export type AirBnBDataHandler = {
 
   /**
    * Filters listings based on provided criteria.
-   *
    * @param {object} params - Object containing filter criteria.
    * @param {[number, number]} [params.price] - Optional tuple for price range.
    * @param {[number, number]} [params.rooms] - Optional tuple for room count range.
@@ -218,21 +214,18 @@ export type AirBnBDataHandler = {
 
   /**
    * Compute the number of listings, and their average price per number of rooms.
-   *
    * @returns {{[key: string]: number}}} An object containing statistics such as the count of listings and average price per room.
    */
   computeFirst(): { [key: string]: number };
 
   /**
    * Compute number of listings per host, and rank by number of listings.
-   *
    * @returns {[string, number][]} An object representing the sorted list of hosts by number of listings.
    */
   computeSecond(): [string, number][];
 
   /**
    * Describes the listings by computing column statistics.
-   *
    * @returns {{ [key: string]: ColumnInfo }} An object mapping each column name to its statistical information.
    */
   describe(): { [key: string]: ColumnInfo };
@@ -240,7 +233,6 @@ export type AirBnBDataHandler = {
 
 /**
  * Initializes an instance of AirBnBDataHandler.
- *
  * @param listings - Optional array of listings.
  * @returns A new instance of AirBnBDataHandler.
  */
@@ -249,7 +241,6 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
 
   /**
    * Filters listings based on provided criteria.
-   *
    * @param {object} params - Object containing filter criteria.
    * @param {[number, number]} [params.price] - Optional tuple for price range.
    * @param {[number, number]} [params.rooms] - Optional tuple for room count range.
@@ -264,7 +255,7 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
     price?: [number, number];
     rooms?: [number, number];
     review_score?: [number, number];
-  }) {
+  }): AirBnBDataHandler {
     if (!this._listings) throw Error("Pass in listings");
     const that = AirBnBDataHandler.init();
     that._listings = this._listings;
@@ -297,7 +288,6 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
 
   /**
    * Compute the number of listings, and their average price per number of rooms.
-   *
    * @returns {{ [key: string]: number }} An object containing statistics such as the count of listings and average price per room.
    */
   computeFirst(): { [key: string]: number } {
@@ -315,7 +305,6 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
 
   /**
    * Compute number of listings per host, and rank by number of listings.
-   *
    * @returns {[string, number][]} An object representing the sorted list of hosts by number of listings.
    */
   computeSecond(): [string, number][] {
@@ -338,7 +327,6 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
 
   /**
    * Describes the listings by computing column statistics.
-   *
    * @returns {{ [key: string]: ColumnInfo }} An object mapping each column name to its statistical information.
    */
   describe(): { [key: string]: ColumnInfo } {
