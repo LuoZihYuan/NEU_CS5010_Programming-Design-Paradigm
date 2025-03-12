@@ -6,9 +6,9 @@ Timeflect is a sleek time management app that tracks and analyzes your daily hab
     1. Get this repo for full requirements documentation and implementation
         - If you've cloned this project in the past: `git pull --recurse-submodules`
         - If you've not: `git clone --recurse-submodules [path]`
-    2. Or, get only the Timeflect project: Visit [Timeflect](https://github.com/LuoZihYuan/Timeflect/tree/4238ce467acf8b542f253e113d2471c1bf699d9e)
+    2. Or, get only the implementation of Timeflect project: Visit [Timeflect](https://github.com/LuoZihYuan/Timeflect/tree/4238ce467acf8b542f253e113d2471c1bf699d9e)
 
-2. Follow the instructions in Timeflect.
+2. Follow the instructions defined in [Timeflect](https://github.com/LuoZihYuan/Timeflect/tree/4238ce467acf8b542f253e113d2471c1bf699d9e).
 
 ## Video Demonstration
 Upcoming...
@@ -117,5 +117,23 @@ n { background-color: DarkGreen }
         3. As a focused worker, I want an easy way to enter pomodoro sessions to break my day into productive intervals.
 
 ## UML Class Diagram
+![diagram](./assets/image/uml-class-diagram.png)
 
 ## Low Fidelity Wireframe
+1. Hours
+![hours wireframe](./assets/image/wireframe-hours.png)
+
+    User stories:
+    - "As a corporate professional, I want to log my work hours to maintain transparency with my team."
+
+2. Pomodoro
+![pomodoro wireframe](./assets/image/wireframe-pomodoro.png)
+
+User stories:
+- "As an efficiency-driven individual, I want a dedicated interface for pomodoro sessions to better structure my work sprints."
+
+3. Reports
+![reports wireframe](./assets/image/wireframe-reports.png)
+
+User stories:
+- "As someone mindful of efficiency, I need daily reports to monitor how I allocate my time throughout the day."
