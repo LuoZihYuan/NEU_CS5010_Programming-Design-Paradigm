@@ -120,20 +120,22 @@ n { background-color: DarkGreen }
 ![diagram](./assets/image/uml-class-diagram.png)
 
 ## Low Fidelity Wireframe
-1. Hours
+### Hours
+- User stories:
+    - "As a corporate professional, I want to log my work hours to maintain transparency with my team."
+- Wireframe: 
 ![hours wireframe](./assets/image/wireframe-hours.png)
 
-    User stories:
-    - "As a corporate professional, I want to log my work hours to maintain transparency with my team."
+    
 
-2. Pomodoro
+### Pomodoro
+- User stories:
+    - "As an efficiency-driven individual, I want a dedicated interface for pomodoro sessions to better structure my work sprints."
+- Wireframe: 
 ![pomodoro wireframe](./assets/image/wireframe-pomodoro.png)
 
-User stories:
-- "As an efficiency-driven individual, I want a dedicated interface for pomodoro sessions to better structure my work sprints."
-
-3. Reports
+### Reports
+- User stories:
+    - "As someone mindful of efficiency, I need daily reports to monitor how I allocate my time throughout the day."
+- Wireframe:
 ![reports wireframe](./assets/image/wireframe-reports.png)
-
-User stories:
-- "As someone mindful of efficiency, I need daily reports to monitor how I allocate my time throughout the day."
