@@ -116,7 +116,7 @@ n { background-color: DarkGreen }
         2. As someone mindful of efficiency, I need daily reports to monitor how I allocate my time throughout the day.
         3. As a focused worker, I want an easy way to enter pomodoro sessions to break my day into productive intervals.
 
-## UML Class Diagram
+## UML Module Diagram
 ![diagram](./assets/image/uml-class-diagram.png)
 
 ## Low Fidelity Wireframe
@@ -139,3 +139,113 @@ n { background-color: DarkGreen }
     - "As someone mindful of efficiency, I need daily reports to monitor how I allocate my time throughout the day."
 - Wireframe:
 ![reports wireframe](./assets/image/wireframe-reports.png)
+
+## Functional Programming Usages
+### Principles
+1. Pure functions
+    ```typescript
+    // Pure function always returns the same result when given the same arguments
+    const sum = data.reduce((acc, curr) => curr + acc, 0);
+    ```
+2. Immutability
+    ```typescript
+    // Calling toSorted does not mutate the original entries array
+    {entries
+      .toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
+      .map(({ key, task, startTime, endTime }) => (
+        // ...populate table
+      )
+    }
+    ```
+3. First-class functions
+    ```typescript
+    // App is a higher order function
+    export const App = () => {
+      const navigate = useNavigate();
+
+      return (
+        <HeroUIProvider
+          navigate={(to: To, options?: NavigateOptions) => {
+            void navigate(to, options);
+          }}
+          useHref={useHref}
+        >
+          <AppHeader />
+          <div className="flex">
+            <AppNavigation />
+            <TimeEntriesProvider>
+              <Routes>
+                <Route path="/" Component={HoursPage} />
+                <Route path="/reports" Component={ReportsPage} />
+              </Routes>
+            </TimeEntriesProvider>
+          </div>
+        </HeroUIProvider>
+      );
+    };
+    ```
+4. Higher-order functions
+    ```typescript
+    // Reduce takes in an arrow function as parameter
+    const sum = data.reduce((acc, curr) => curr + acc, 0);
+    ```
+5. Declarative over imperative
+    ```typescript
+    // Define the target to sort the entries array without imperatively specifying which algorithm to use
+    entries.toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
+    ```
+
+### Declarative Programming
+1. Map
+    ```typescript
+    {navContents.map(({ title, link, icon }) => (
+        <AppNavigationRow
+          key={`nav-${title}`}
+          title={title}
+          link={link}
+          icon={icon}
+          selected={location.pathname === link}
+        />
+      ))}
+    ```
+2. Reduce
+    ```typescript
+    const sum = data.reduce((acc, curr) => curr + acc, 0);
+    ```
+3. ToSorted
+    ```typescript
+    {entries
+      .toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
+      .map(({ key, task, startTime, endTime }) => (
+        // ...populate table
+      )
+    }
+    ```
+
+### Design Patterns
+1. Singleton
+    ```typescript
+    const app = initializeApp(firebaseConfig);
+    export const db = getFirestore(app);
+    ```
+2. Memento
+    ```typescript
+    const [isRunning, setIsRunning] = useState<boolean>(false);
+    ```
+3. Observer
+    ```tsx
+    <Button
+      isIconOnly
+      radius="full"
+      className="relative flex size-10 justify-center items-center bg-foreground-100"
+      onPress={() => {
+        setTheme(theme === "dark" ? "light" : "dark");
+      }}
+    >
+      {theme === "dark" ? (
+        <HiOutlineMoon className="size-6" />
+      ) : (
+        <HiOutlineSun className="size-8" />
+      )}
+    </Button>
+    ```
