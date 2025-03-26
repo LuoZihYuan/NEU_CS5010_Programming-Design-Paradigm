@@ -159,7 +159,7 @@ n { background-color: DarkGreen }
     ```
 3. First-class functions
     ```typescript
-    // App is a higher order function
+    // App is a first class function
     export const App = () => {
       const navigate = useNavigate();
 
@@ -225,15 +225,18 @@ n { background-color: DarkGreen }
 ### Design Patterns
 1. Singleton
     ```typescript
+    // Always use the same db instance
     const app = initializeApp(firebaseConfig);
     export const db = getFirestore(app);
     ```
 2. Memento
     ```typescript
+    // use setIsRunning instead of directly assigning values to isRunning
     const [isRunning, setIsRunning] = useState<boolean>(false);
     ```
 3. Observer
     ```tsx
+    // onPress listens to user click events
     <Button
       isIconOnly
       radius="full"
