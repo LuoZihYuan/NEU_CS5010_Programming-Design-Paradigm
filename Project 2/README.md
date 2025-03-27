@@ -5,9 +5,6 @@ Timeflect is a sleek time management app that tracks and analyzes your daily hab
 >
 > This repository is used to host documents required for homework submission. Visit [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect) to see the actual implementaion.
 
-## Usage
-Visit:  [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect)
-
 ## Table of Contents
 1. [Video Demonstration](#video-introduction)
 2. [Business Requirements](#business-requirements)
