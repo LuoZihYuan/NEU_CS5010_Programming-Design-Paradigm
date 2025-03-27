@@ -1,15 +1,12 @@
-> [!IMPORTANT]
->
-> The sole purpose of this repository is to host required documents for homework submission. Visit [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect) to see the actual implementaion.
-
 # Project 2 - Timeflect
 Timeflect is a sleek time management app that tracks and analyzes your daily habits to boost productivity.
 
+> [!IMPORTANT]
+>
+> This repository is used to host documents required for homework submission. Visit [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect) to see the actual implementaion.
+
 ## Usage
-### Try it out
-Visit: [timeflect.web.app](https://timeflect.web.app/)
-### Building on your own
-Find instructions here: [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect)
+Visit:  [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect)
 
 ## Table of Contents
 1. [Video Demonstration](#video-introduction)
@@ -157,15 +154,28 @@ n { background-color: DarkGreen }
     // Pure function always returns the same result when given the same arguments
     const sum = data.reduce((acc, curr) => curr + acc, 0);
     ```
+
+    ```typescript
+    // Violating pure functions
+    let temp = 0;
+    const sum = data.reduce((acc, curr) => temp + curr, 0);
+    ```
 2. Immutability
     ```typescript
     // Calling toSorted does not mutate the original entries array
-    {entries
+    entries
       .toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
       .map(({ key, task, startTime, endTime }) => (
         // ...populate table
       )
-    }
+    ```
+
+    ```typescript
+    // Violating immutability: Array.sort mutates the original entries array.
+    entries.sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+    entries.map(({ key, task, startTime, endTime }) => {
+      // ...populate table
+    });
     ```
 3. First-class functions
     ```typescript
@@ -194,10 +204,30 @@ n { background-color: DarkGreen }
       );
     };
     ```
+
+    ```typescript
+    // Violating First-Class Functions: Not assigning the App Function to any variables
+    export function App() {
+      // ...
+    }
+    ```
 4. Higher-order functions
     ```typescript
     // Reduce takes in an arrow function as parameter
     const sum = data.reduce((acc, curr) => curr + acc, 0);
+    ```
+
+    ```typescript
+    // Violating Higher-order Functions: Not passing functions as parameter
+    function sumArray(arr: number[]): number {
+      let total = 0;
+      for (const num of arr) {
+        total += num;
+      }
+      return total;
+    }
+    const sum = sumArray(data);
+
     ```
 5. Declarative over imperative
     ```typescript
@@ -205,10 +235,48 @@ n { background-color: DarkGreen }
     entries.toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
     ```
 
+    ```typescript
+    // Imperatively specifying the sort algorithm
+    function imperativeSort(entries: Entry[]): Entry[] {
+      // Create a shallow copy to avoid mutating the original array
+      const sortedEntries = [...entries];
+
+      for (let i = 0; i < sortedEntries.length - 1; i++) {
+        for (let j = i + 1; j < sortedEntries.length; j++) {
+          if (sortedEntries[i].startTime.getTime() < sortedEntries[j].startTime.getTime()) {
+            // Swap the elements
+            const temp = sortedEntries[i];
+            sortedEntries[i] = sortedEntries[j];
+            sortedEntries[j] = temp;
+          }
+        }
+      }
+      return sortedEntries;
+    }
+
+    // Pass the entries array into the imperative sort function
+    const sortedEntries = imperativeSort(entries);
+    ```
+
 ### Declarative Programming
 1. Map
     ```typescript
-    {navContents.map(({ title, link, icon }) => (
+    navContents.map(({ title, link, icon }) => (
+      <AppNavigationRow
+        key={`nav-${title}`}
+        title={title}
+        link={link}
+        icon={icon}
+        selected={location.pathname === link}
+      />
+    ))
+    ```
+
+    ```tsx
+    // Not using Map
+    const navRows: JSX.Element[] = [];
+    for (const { title, link, icon } of navContents) {
+      navRows.push(
         <AppNavigationRow
           key={`nav-${title}`}
           title={title}
@@ -216,19 +284,45 @@ n { background-color: DarkGreen }
           icon={icon}
           selected={location.pathname === link}
         />
-      ))}
+      );
+    }
+    // Then, in your render/return statement:
+    return <nav>{navRows}</nav>;
     ```
 2. Reduce
     ```typescript
     const sum = data.reduce((acc, curr) => curr + acc, 0);
     ```
+
+    ```typescript
+    // Not using Reduce
+    let sum = 0;
+    for (const curr of data) {
+      sum += curr;
+    }
+    ```
 3. ToSorted
     ```typescript
-    {entries
-      .toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
-      .map(({ key, task, startTime, endTime }) => (
-        // ...populate table
-      )
+    entries.toSorted((a, b) => b.startTime.getTime() - a.startTime.getTime())
+    ```
+
+    ```typescript
+    // Not using toSorted
+    // Create a shallow copy of entries
+    const sortedEntries: typeof entries = [];
+    for (let i = 0; i < entries.length; i++) {
+      sortedEntries.push(entries[i]);
+    }
+
+    // Sort the copy in descending order based on startTime using bubble sort
+    for (let i = 0; i < sortedEntries.length - 1; i++) {
+      for (let j = 0; j < sortedEntries.length - 1 - i; j++) {
+        if (sortedEntries[j].startTime.getTime() < sortedEntries[j + 1].startTime.getTime()) {
+          const temp = sortedEntries[j];
+          sortedEntries[j] = sortedEntries[j + 1];
+          sortedEntries[j + 1] = temp;
+        }
+      }
     }
     ```
 
@@ -239,28 +333,35 @@ n { background-color: DarkGreen }
     const app = initializeApp(firebaseConfig);
     export const db = getFirestore(app);
     ```
+
+    ```typescript
+    // Violates Singleton: Uses different Firestore instance on each call.
+    export function createNewDbInstance() {
+      const app = initializeApp(firebaseConfig);
+      return getFirestore(app);
+    }
+    ```
 2. Memento
     ```typescript
     // use setIsRunning instead of directly assigning values to isRunning
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    setIsRunning(true);
+    ```
+
+    ```typescript
+    // Violates Memento
+    const [isRunning, setIsRunning] = useState<boolean>(false);
+    isRunning = true; 
     ```
 3. Observer
     ```tsx
     // onPress listens to user click events
-    <Button
-      isIconOnly
-      radius="full"
-      className="relative flex size-10 justify-center items-center bg-foreground-100"
-      onPress={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
-    >
-      {theme === "dark" ? (
-        <HiOutlineMoon className="size-6" />
-      ) : (
-        <HiOutlineSun className="size-8" />
-      )}
-    </Button>
+    setTheme(theme === "dark" ? "light" : "dark");
+    ```
+
+    ```tsx
+    // Instead of using the provided setter function (which notifies all observers of the state change), the code directly reassigns the state variable.
+    theme = (theme === "dark") ? "light" : "dark";
     ```
 
 ## Disclaimer: Use of Large Language Models (LLMs)
