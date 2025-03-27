@@ -1,22 +1,32 @@
+> [!IMPORTANT]
+>
+> The sole purpose of this repository is to host required documents for homework submission. Visit [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect) to see the actual implementaion.
+
 # Project 2 - Timeflect
 Timeflect is a sleek time management app that tracks and analyzes your daily habits to boost productivity.
 
 ## Usage
-1. You can choose to either:
-    1. Get this repo for full requirements documentation and implementation
-        - If you've cloned this project in the past: `git pull --recurse-submodules`
-        - If you've not: `git clone --recurse-submodules [path]`
-    2. Or, get only the implementation of Timeflect project: Visit [Timeflect](https://github.com/LuoZihYuan/Timeflect/tree/4238ce467acf8b542f253e113d2471c1bf699d9e)
+### Try it out
+Visit: [timeflect.web.app](https://timeflect.web.app/)
+### Building on your own
+Find instructions here: [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect)
 
-2. Follow the instructions defined in [Timeflect](https://github.com/LuoZihYuan/Timeflect/tree/4238ce467acf8b542f253e113d2471c1bf699d9e).
+## Table of Contents
+1. [Video Demonstration](#video-introduction)
+2. [Business Requirements](#business-requirements)
+3. [Challenges](#challenges)
+4. [Verbs & Nouns Identification](#business-requirements)
+5. [Classes & Attributes Declaration](#classes--attributes-declaration)
+6. [Target Audiences](#target-audiences)
+7. [User Personas & User Stories](#user-personas--user-stories)
+8. [UML Module Diagram](#uml-module-diagram)
+9. [Low Fidelity Wireframe](#low-fidelity-wireframe)
+10. [Functional Programming Usages](#functional-programming-usages)
+11. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
 
-## Video Demonstration
+
+## Video Introduction
 Upcoming...
-
-## AI Assistance
-|  Model  | Version | Prompt |
-| :-----: | :-----: | :----- |
-| ChatGPT | 4-o3-mini | Project Timeflect is a sleek time management app that tracks and analyzes your daily habits to boost productivity. For the first phase, the team has decided to focus on the MVP items: Hours(timetracker), Reports(daily/weekly analytics), and Pomodoro(helper interface for entering sessions of pomodoro into timetracker). Generate the following for the project: "1. Business Requirements: Bulletpoints, but do not separate the functionalities into different categories", "2. Identify Nouns, verbs from the requirments", "3. Target audience", "4. Rules", "5. Q&A: Things that users might not be able to accomplish with the current version; answer them as if you were talking to a real user", "6. Summary of Classes, Attributes, and Associations (from nouns and verbs): Associations are like composition and aggregation", "7. User Dimensions: Identify 4 user persona dimensions and pick the 2 most significant ones", "8. User Persona: Create 4 User personas, each with their name, background, 2 dimensions, and 3 user stories. For the three user stories, find the user group that best fits the user, and do not mention requirements not in the first phase." |
 
 ## Business Requirements
 ### Functional
@@ -42,7 +52,7 @@ n { background-color: DarkGreen }
 - MVP Scope: Only Hours (time tracker), Reports (daily/weekly analytics), and Pomodoro (session entry) functionalities are implemented in this phase.
 - User Control: Users can only start, pause, or stop sessions; no advanced editing or retrospective adjustments beyond the basic input for this phase.
 
-## Q&A (Challenges)
+## Challenges
 1. Can I export my tracked data or reports right now?
     > At this stage, exporting functionality isn’t available. You can view your reports directly within the app, and we’re working on export features for a future update.
 
@@ -52,7 +62,7 @@ n { background-color: DarkGreen }
 3. Can I integrate the app with my calendar or other productivity tools?
     > Integration with external tools isn’t available in this MVP. The focus now is on core tracking and reporting. We’re gathering feedback for potential integrations later on.
 
-## Classify Nouns/Verbs into Classes/Attributes
+## Classes & Attributes Declaration
 
 1. User:
     - Attributes: userID, username, password, email
@@ -73,7 +83,7 @@ n { background-color: DarkGreen }
 - Remote workers aiming for efficient self-management.
 - Students looking for structured time management and productivity insights.
 
-## User Personas and User Stories
+## User Personas & User Stories
 1. Alice – The Freelance Designer
     - Background:
         - Alice works as a freelance designer juggling multiple projects. She is keen on tracking her work hours and optimizing productivity.
@@ -252,3 +262,19 @@ n { background-color: DarkGreen }
       )}
     </Button>
     ```
+
+## Disclaimer: Use of Large Language Models (LLMs)
+This project includes the use of Large Language Models (LLMs), such as OpenAI's ChatGPT, to support the development process. LLMs were used for tasks including:
+
+- Brainstorming and refining ideas
+- Debugging and optimizing code
+- Generating code snippets or documentation templates
+- Explaining technical concepts
+
+All AI-generated content was carefully reviewed, tested, and adapted to ensure correctness and relevance. The final implementation reflects my own understanding and effort, in accordance with the academic integrity guidelines of the course.
+
+### LLM Usage Details
+
+|  Model  | Version | Prompt |
+| :-----: | :-----: | :----- |
+| ChatGPT | 4-o3-mini | Project Timeflect is a sleek time management app that tracks and analyzes your daily habits to boost productivity. For the first phase, the team has decided to focus on the MVP items: Hours(timetracker), Reports(daily/weekly analytics), and Pomodoro(helper interface for entering sessions of pomodoro into timetracker). Generate the following for the project: "1. Business Requirements: Bulletpoints, but do not separate the functionalities into different categories", "2. Identify Nouns, verbs from the requirments", "3. Target audience", "4. Rules", "5. Q&A: Things that users might not be able to accomplish with the current version; answer them as if you were talking to a real user", "6. Summary of Classes, Attributes, and Associations (from nouns and verbs): Associations are like composition and aggregation", "7. User Dimensions: Identify 4 user persona dimensions and pick the 2 most significant ones", "8. User Persona: Create 4 User personas, each with their name, background, 2 dimensions, and 3 user stories. For the three user stories, find the user group that best fits the user, and do not mention requirements not in the first phase." |
