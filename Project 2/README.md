@@ -19,14 +19,9 @@ Timeflect is a sleek time management app that tracks and analyzes your daily hab
 
 ## Business Requirements
 ### Functional
-- Provide an intuitive interface to record and manage hours in a timetracker.
-- Generate daily and weekly analytics reports to visualize productivity trends.
-- Integrate a Pomodoro helper interface that logs pomodoro sessions into the timetracker.
-- Allow users to review and analyze their daily habits to boost productivity.
-- Ensure seamless synchronization between tracked hours, pomodoro sessions, and report generation.
-- Guarantee data integrity and real-time updating of reports.
-- Support secure user authentication and data privacy.
-- Offer a responsive design for quick data entry and effortless navigation.
+- Provide an intuitive <ins><n>interface</n></ins><sup>(N.)</sup> to <ins><v>record</v></ins><sup>(V.)</sup> and <ins><v>manage</v></ins><sup>(V.)</sup> <ins><n>hours</n></ins><sup>(N.)</sup> in a <ins><n>timetracker</n></ins><sup>(N.)</sup>.
+- Generate daily and weekly analytics <ins><n>report</n></ins>s<sup>(N.)</sup> to <ins><v>visualize</v></ins><sup>(V.)</sup> productivity trends.
+- Integrate a <ins><n>Pomodoro</n></ins><sup>(N.)</sup> interface that <ins><v>logs</v></ins><sup>(V.)</sup> pomodoro sessions into the timetracker.
 
 <style>
 v { background-color: DarkRed }
