@@ -6,21 +6,16 @@ Timeflect is a sleek time management app that tracks and analyzes your daily hab
 > This repository is used to host documents required for homework submission. Visit [github.com/LuoZihYuan/Timeflect](https://github.com/LuoZihYuan/Timeflect) to see the actual implementaion.
 
 ## Table of Contents
-1. [Video Demonstration](#video-introduction)
-2. [Business Requirements](#business-requirements)
-3. [Challenges](#challenges)
-4. [Verbs & Nouns Identification](#business-requirements)
-5. [Classes & Attributes Declaration](#classes--attributes-declaration)
-6. [Target Audiences](#target-audiences)
-7. [User Personas & User Stories](#user-personas--user-stories)
-8. [UML Module Diagram](#uml-module-diagram)
-9. [Low Fidelity Wireframe](#low-fidelity-wireframe)
-10. [Functional Programming Usages](#functional-programming-usages)
-11. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
-
-
-## Video Introduction
-Upcoming...
+1. [Business Requirements](#business-requirements)
+2. [Challenges](#challenges)
+3. [Verbs & Nouns Identification](#business-requirements)
+4. [Classes & Attributes Declaration](#classes--attributes-declaration)
+5. [Target Audiences](#target-audiences)
+6. [User Personas & User Stories](#user-personas--user-stories)
+7. [UML Module Diagram](#uml-module-diagram)
+8. [Low Fidelity Wireframe](#low-fidelity-wireframe)
+9. [Functional Programming Usages](#functional-programming-usages)
+10. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
 
 ## Business Requirements
 ### Functional
@@ -145,6 +140,10 @@ n { background-color: DarkGreen }
 ![reports wireframe](./assets/image/wireframe-reports.png)
 
 ## Functional Programming Usages
+
+### Explanation Video 
+[![Video](https://img.youtube.com/vi/96qV4E4g4Ss/maxresdefault.jpg)](https://www.youtube.com/watch?v=96qV4E4g4Ss)
+
 ### Principles
 1. Pure functions
     ```typescript
@@ -352,7 +351,7 @@ n { background-color: DarkGreen }
     ```
 3. Observer
     ```tsx
-    // onPress listens to user click events
+    // React listens to hooks and updates comonents observing the change
     setTheme(theme === "dark" ? "light" : "dark");
     ```
 
