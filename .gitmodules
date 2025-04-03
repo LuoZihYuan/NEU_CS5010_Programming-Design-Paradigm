@@ -4,3 +4,9 @@
 [submodule "Timeflect"]
 	path = Project 2/Timeflect
 	url = git@github.com:LuoZihYuan/Timeflect.git
+[submodule "Homework 4/ClassChat-Client"]
+	path = Homework 4/ClassChat-Client
+	url = git@github.com:LuoZihYuan/ClassChat-Client.git
+[submodule "Homework 4/ClassChat-Server"]
+	path = Homework 4/ClassChat-Server
+	url = git@github.com:LuoZihYuan/ClassChat-Server.git
