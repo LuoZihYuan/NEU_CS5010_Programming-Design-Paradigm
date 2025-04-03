@@ -1,10 +1,24 @@
 # ClassChat
 ClassChat is a real-time web-based chatroom designed to facilitate communication between students in a class.
 
+> [!IMPORTANT]
+>
+> This repository is used to host documents required for homework submission. Visit [ClassChat-Server](https://github.com/LuoZihYuan/ClassChat-Server) and [ClassChat-Client](https://github.com/LuoZihYuan/ClassChat-Client) to see the actual implementaion.
+
 ## Usage
 
 1. Clone the [ClassChat-Server](https://github.com/LuoZihYuan/ClassChat-Server) repository and follow the usage instructions defined in its README file.
 2. Clone the [ClassChat-Client](https://github.com/LuoZihYuan/ClassChat-Client) repository and follow the usage instructions defined in its README file.
+
+## Table of Contents
+1. [Business Requirements](#business-requirements)
+2. [Challenges](#challenges)
+3. [Verbs & Nouns Identification](#business-requirements)
+4. [Classes & Attributes Declaration](#classes--attributes-declaration)
+5. [Target Audiences](#target-audiences)
+6. [User Personas & User Stories](#user-personas--user-stories)
+7. [Creative Addition](#creative-addition)
+8. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
 
 ## Business Requirements
 ### Functional Requirements
@@ -24,7 +38,7 @@ ClassChat is a real-time web-based chatroom designed to facilitate communication
 - The application is deployable in a standard Node.js hosting environment.
 - The codebase remains focused on the core chat functionality to ensure ease of maintenance.
 
-## Q&A (Challenges)
+## Challenges
 
 1. Why is there no option for sending private messages between users in the chatroom?
     > The current MVP roadmap is focused on delivering a streamlined, public chat experience. Private messaging is planned for future releases once the core real-time functionality is stable.
