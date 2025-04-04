@@ -11,14 +11,19 @@ ClassChat is a real-time web-based chatroom designed to facilitate communication
 2. Clone the [ClassChat-Client](https://github.com/LuoZihYuan/ClassChat-Client) repository and follow the usage instructions defined in its README file.
 
 ## Table of Contents
-1. [Business Requirements](#business-requirements)
-2. [Challenges](#challenges)
-3. [Verbs & Nouns Identification](#business-requirements)
-4. [Classes & Attributes Declaration](#classes--attributes-declaration)
-5. [Target Audiences](#target-audiences)
-6. [User Personas & User Stories](#user-personas--user-stories)
-7. [Creative Addition](#creative-addition)
-8. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
+1. [Introduction Video](#introduction-video)
+2. [Business Requirements](#business-requirements)
+3. [Challenges](#challenges)
+4. [Verbs & Nouns Identification](#business-requirements)
+5. [Classes & Attributes Declaration](#classes--attributes-declaration)
+6. [Target Audiences](#target-audiences)
+7. [User Personas & User Stories](#user-personas--user-stories)
+8. [Creative Addition](#creative-addition)
+9. [Disclaimer: Use of Large Language Models (LLMs)](#disclaimer-use-of-large-language-models-llms)
+
+## Introduction Video
+
+[![intro ClassChat](https://img.youtube.com/vi/r_a8FRY6dBw/maxresdefault.jpg)](https://www.youtube.com/watch?v=r_a8FRY6dBw)
 
 ## Business Requirements
 ### Functional Requirements
