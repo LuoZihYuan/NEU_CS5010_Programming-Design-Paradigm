@@ -61,7 +61,7 @@ const indent = "";
  * @param {Listing[]} data - The listing data.
  */
 const init = async (datapath?: string): Promise<Cli> => {
-  console.log("\n[Load]");
+  console.info("\n[Load]");
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -104,7 +104,7 @@ const init = async (datapath?: string): Promise<Cli> => {
       let exit = false;
 
       while (!exit) {
-        console.log("\n[Menu]");
+        console.info("\n[Menu]");
         const menu_prompt = `${indent}< Enter command (filter, stats, hostRank, describe, export, exit): `;
         const menu = await _question(menu_prompt);
 
@@ -137,7 +137,7 @@ const init = async (datapath?: string): Promise<Cli> => {
      * @returns {Promise<void>} A promise that resolves once the filters are applied.
      */
     async filter(): Promise<void> {
-      console.log("\n[Filter]");
+      console.info("\n[Filter]");
 
       const filter_prompts = {
         price: `${indent}< Enter price range as min,max or leave blank: `,
@@ -156,12 +156,29 @@ const init = async (datapath?: string): Promise<Cli> => {
         },
         Promise.resolve({})
       );
-      if (Object.keys(condition).length === 0) {
-        console.log(`\n${indent}> No filters applied.`);
+      if (Object.keys(condition).length > 0) {
+        handler = handler!.filter(condition);
+        console.log(`${indent}> Filter applied. Listings Summary:\n`);
+      } else {
+        console.log(`\n${indent}> No filter applied. Listings Summary:\n`);
+      }
+
+      if (handler!._listings!.length === 0) {
+        console.log(
+          `${indent}> No listings meet your specified condition. Exit and try another filter condition.`
+        );
         return;
       }
-      handler = handler!.filter(condition);
-      console.log(`${indent}> Filter applied`);
+      console.log(
+        `${indent}> id, listing_url, ..., calculated_host_listings_count_shared_rooms, reviews_per_month`
+      );
+      handler!._listings!.forEach((currentValue, index, arr) => {
+        if (index < 5 || index > arr.length - 6)
+          console.log(
+            `${indent}> ${currentValue["id"]}, ${currentValue["listing_url"]}, ..., ${currentValue["calculated_host_listings_count_shared_rooms"]}, ${currentValue["reviews_per_month"]}`
+          );
+        else if (index === 5 && arr.length > 10) console.log(`${indent}> ...`);
+      });
     },
 
     /**
@@ -169,7 +186,7 @@ const init = async (datapath?: string): Promise<Cli> => {
      * @returns {void}
      */
     stats(): void {
-      console.log("\n[Stats]");
+      console.info("\n[Stats]");
       const stats = handler!.computeFirst();
       console.log(`${indent}> Count: ${stats.count}`);
       console.log(
@@ -182,8 +199,14 @@ const init = async (datapath?: string): Promise<Cli> => {
      * @returns {void}
      */
     hostRank(): void {
-      console.log("\n[HostRank]");
+      console.info("\n[HostRank]");
       const ranking = handler!.computeSecond();
+      if (ranking.length === 0) {
+        console.log(
+          `${indent}> No listings to rank host. Exit and try another filter condition.`
+        );
+        return;
+      }
       console.log(`${indent}> host_id, host_listings_count`);
       ranking.slice(0, 5).forEach((rank) => {
         console.log(`${indent}> ${rank[0]}, ${rank[1]}`);
@@ -200,8 +223,14 @@ const init = async (datapath?: string): Promise<Cli> => {
      * @returns {void}
      */
     describe(): void {
-      console.log("\n[Describe]");
+      console.info("\n[Describe]");
       const statistics = handler!.describe();
+      if (Object.keys(statistics).length === 0) {
+        console.log(
+          `${indent}> No listings to describe column statistics. Exit and try another filter condition.`
+        );
+        return;
+      }
       Object.entries(statistics).forEach(([col, info]) => {
         console.log(
           `${indent}> ${col}: ${JSON.stringify(info)
@@ -217,7 +246,7 @@ const init = async (datapath?: string): Promise<Cli> => {
      * @returns {Promise<void>} A promise that resolves when the export is complete.
      */
     async export(): Promise<void> {
-      console.log("\n[Export]");
+      console.info("\n[Export]");
       const export_prompt = `${indent}< Enter folder path for export or leave blank to use default path (./data/): `;
       const filePath = (await _question(export_prompt)) || "./data/";
       await FileUtil.save(filePath, handler!);

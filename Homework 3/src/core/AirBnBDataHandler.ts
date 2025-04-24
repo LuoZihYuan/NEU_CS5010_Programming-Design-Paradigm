@@ -298,7 +298,8 @@ const init = (listings?: Listing[]): AirBnBDataHandler => ({
           .map((listing) => listing.price! / listing.bedrooms!)
       : [0];
     const avgPricePerRoom =
-      bedroom_prices.reduce((acc, curr) => acc + curr) / bedroom_prices.length;
+      bedroom_prices.reduce((acc, curr) => acc + curr, 0) /
+      bedroom_prices.length;
 
     return { count, avgPricePerRoom };
   },
